@@ -1,0 +1,324 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+user_ptr            0x4               ccp.o
+cmdfcb              0x24              ccp.o
+subdma              0x80              ccp.o
+bios_currentdrive   0x4               bios.o
+bios_iobyte         0x4               bios.o
+dirflag             0x4               ccp.o
+bios_tpa            0x10000           bios.o
+ro_dsk              0x4               bdosmain.o
+subprompt           0x4               ccp.o
+bios_currenttrack   0x4               bios.o
+subcom              0x84              ccp.o
+log_dsk             0x4               bdosmain.o
+bios_drivea_alv     0x2000            bios.o
+save_sub            0x84              ccp.o
+tpa_lp              0x4               bdosmain.o
+glb_index           0x4               ccp.o
+tpa_ht              0x4               bdosmain.o
+autorom             0x4               ccp.o
+usercmd             0x84              bios.o
+load_try            0x4               ccp.o
+subfcb              0x24              ccp.o
+bios_dirbuf         0x80              bios.o
+bios_currentdmaaddress
+                    0x4               bios.o
+user                0x4               ccp.o
+tail                0x4               ccp.o
+tpa_lt              0x4               bdosmain.o
+bios_drivea_csv     0x2000            bios.o
+first_sub           0x4               ccp.o
+chainp              0x4               bdosmain.o
+cur_disk            0x4               ccp.o
+index               0x4               ccp.o
+gbls                0xf4              bdosmain.o
+crit_dsk            0x4               bdosmain.o
+sub_user            0x4               ccp.o
+bios_current_dph    0x4               bios.o
+chain_sub           0x4               ccp.o
+end_of_file         0x4               ccp.o
+sub_index           0x4               ccp.o
+parm                0x78              ccp.o
+dma                 0x84              ccp.o
+bios_currentsector  0x4               bios.o
+tpa_hp              0x4               bdosmain.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .text set to 0x50000
+LOAD start.o
+LOAD bdosmain.o
+LOAD bdosmisc.o
+LOAD bdosplm.o
+LOAD bdosrw.o
+LOAD bios.o
+LOAD ccp.o
+LOAD conbdos.o
+LOAD dskutil.o
+LOAD fileio.o
+LOAD iosys.o
+                0x00000000                __DYNAMIC = 0x0
+                0x00000000                PROVIDE (__stack, 0x0)
+                0x00001020                . = 0x1020
+
+.text           0x00050000     0x5000
+ CREATE_OBJECT_SYMBOLS
+ *(.text)
+ .text          0x00050000       0x28 start.o
+                0x00050000                start
+ .text          0x00050028      0x4fc bdosmain.o
+                0x000504e8                tmp_sel
+                0x00050028                _bdos
+ .text          0x00050524      0x5bc bdosmisc.o
+                0x000506b4                prt_err
+                0x00050576                bdosinit
+                0x00050a8a                set_tpa
+                0x000506e0                abrt_err
+                0x0005060e                warmboot
+                0x00050872                ro_err
+                0x000509a2                error
+                0x00050772                ext_err
+                0x00050a12                setexc
+ .text          0x00050ae0      0x538 bdosrw.o
+                0x00050ae0                blkindx
+                0x00050b30                blknum
+                0x00050e1e                bdosrw
+                0x00050d50                calcext
+                0x00050b8c                setblk
+                0x00050be2                do_io
+                0x00050dd8                get_rc
+                0x00050c3c                new_ext
+ .text          0x00051018      0x1cc bios.o
+                0x000511ca                pgmld
+                0x00051054                bios_seldsk
+                0x00051104                bios_setiobyte
+                0x00051146                swap
+                0x000510ae                bios_write
+                0x000511d6                initexc
+                0x00051042                bios_reader
+                0x00051110                bios_flush
+                0x0005111c                udiv
+                0x0005101e                bios_wboot
+                0x0005109a                bios_setdma
+                0x000511d0                traphndl
+                0x000510ea                bios_getmrt
+                0x000511dc                load68k
+                0x000510f6                bios_getiobyte
+                0x00051116                bios_setexc
+                0x0005108e                bios_setsec
+                0x0005104a                bios_home
+                0x000511aa                bdos
+                0x0005102e                bios_conin
+                0x0005103a                bios_list
+                0x00051018                bios_boot
+                0x00051082                bios_settrk
+                0x000510be                bios_sectran
+                0x00051028                bios_const
+                0x0005103e                bios_punch
+                0x000510b6                bios_listst
+                0x00051036                bios_conout
+                0x000510a6                bios_read
+ *fill*         0x000511e4        0x4 00
+ .text          0x000511e8     0x1f20 ccp.o
+                0x00051d88                ren_cmd
+                0x00051754                true_char
+                0x00052a58                translate
+                0x000512cc                prompt
+                0x00051242                strcmp
+                0x000513a4                decode
+                0x00051644                scan_cmd
+                0x00051344                echo_cmd
+                0x00051c7a                type_cmd
+                0x00052da8                execute_cmd
+                0x00052778                sub_read
+                0x0005279c                dollar
+                0x000521da                user_cmd
+                0x00052298                cmd_file
+                0x00051a62                dir_cmd
+                0x00051a12                chk_colon
+                0x0005127c                copy_cmd
+                0x00051224                cpy
+                0x00052c9e                submit_cmd
+                0x0005171e                delim
+                0x00051570                get_cmd
+                0x000520c0                era_cmd
+                0x000514f8                check_cmd
+                0x000519de                find_colon
+                0x00051780                fill_fcb
+                0x00052962                comments
+                0x00051676                get_parms
+                0x00052ef4                ccp
+                0x000519b0                too_many
+                0x0005120a                cr_lf
+ .text          0x00053108      0x4ac conbdos.o
+                0x00053126                conbrk
+                0x00053402                readline
+                0x000532c4                conin
+                0x00053108                constat
+                0x00053236                cookdout
+                0x000532fc                rawconio
+                0x0005335e                newline
+                0x00053270                getch
+                0x000531a8                conout
+                0x00053388                backsp
+                0x0005333e                prt_line
+                0x00053202                tabout
+ .text          0x000535b4      0x474 dskutil.o
+                0x00053648                dir_rd
+                0x000535b4                rdwrt
+                0x000538e4                clraloc
+                0x000539b0                getaloc
+                0x000536c2                dchksum
+                0x00053670                dir_wr
+                0x0005395e                chkaloc
+                0x000536fc                dirscan
+                0x00053874                setaloc
+ .text          0x00053a28      0x944 fileio.o
+                0x00053c4a                match
+                0x00053ee8                matchit
+                0x0005421e                fsize
+                0x00053cd0                openfile
+                0x00053d2a                flushit
+                0x0005416c                set_attr
+                0x00053a28                alloc
+                0x000541c2                extsize
+                0x00053f0a                search
+                0x000541ea                setran
+                0x00054018                delete
+                0x0005427a                getsize
+                0x000542d6                free_sp
+                0x000540ea                rename
+                0x00053f88                create
+                0x00053aca                seldsk
+                0x00053c24                move
+                0x00053ed6                alltrue
+                0x00053ea6                close_fi
+                0x00053d66                close
+ .text          0x0005436c       0xfc iosys.o
+                0x0005436c                do_phio
+ *(.dynrel)
+ *(.hash)
+ *(.dynsym)
+ *(.dynstr)
+ *(.rules)
+ *(.need)
+                0x00054468                _etext = .
+                0x00054468                __etext = .
+                0x00055000                . = ALIGN (0x1000)
+
+.data           0x00055000    0x3eb98
+ *(.dynamic)
+ *(.got)
+ *(.plt)
+ *(.data)
+ .data          0x00055000        0xc bdosmisc.o
+                0x00055000                copyrt
+                0x00055004                serial
+                0x00055008                warning
+ *fill*         0x0005500c        0x4 00
+ .data          0x00055010    0x3e900 bdosplm.o
+                0x00055010                bios_diskimage
+ .data          0x00093910       0xb4 bios.o
+                0x00093920                bios_8inch_dpb
+                0x000939a0                bios_mrt
+                0x000939b4                autost
+                0x0009399c                bios_valid_dph
+                0x000939b8                load_tbl
+                0x000939b2                submit
+                0x000939b3                morecmds
+                0x00093930                bios_p112_dph
+                0x00093980                bios_8inch_dph
+                0x0009394c                bios_8inch_xlt
+                0x00093910                bios_p112_dpb
+ *fill*         0x000939c4        0x4 00
+ .data          0x000939c8      0x1d0 ccp.o
+                0x000939c8                cmd_tbl
+                0x00093b52                lderr3
+                0x00093af8                msg13
+                0x00093acb                msg11
+                0x00093aaa                msg9
+                0x00093a34                msg3
+                0x00093a08                msg
+                0x00093a76                msg7
+                0x00093a22                msg2
+                0x00093b0e                lderr1
+                0x00093a8d                msg8
+                0x00093a46                msg4
+                0x00093b87                del
+                0x00093ae0                msg12
+                0x00093a58                msg5
+                0x00093b73                lderror
+                0x00093a6d                msg6
+                0x00093aba                msg10
+                0x00093b36                lderr2
+ *(.linux-dynamic)
+                0x00093b98                _edata = .
+                0x00093b98                __edata = .
+
+.bss            0x00093b98    0x1455c
+                0x00093b98                __bss_start = .
+ *(.bss)
+ .bss           0x00093b98        0x4 iosys.o
+ *(COMMON)
+ *fill*         0x00093b9c        0x4 00
+ COMMON         0x00093ba0      0x114 bdosmain.o
+                                  0x0 (size before relaxing)
+                0x00093ba0                ro_dsk
+                0x00093ba4                log_dsk
+                0x00093ba8                tpa_lp
+                0x00093bac                tpa_ht
+                0x00093bb0                tpa_lt
+                0x00093bb4                chainp
+                0x00093bb8                gbls
+                0x00093cac                crit_dsk
+                0x00093cb0                tpa_hp
+ *fill*         0x00093cb4        0x4 00
+ COMMON         0x00093cb8    0x14128 bios.o
+                                  0x0 (size before relaxing)
+                0x00093cb8                bios_currentdrive
+                0x00093cbc                bios_iobyte
+                0x00093cc0                bios_tpa
+                0x000a3cc0                bios_currenttrack
+                0x000a3cc8                bios_drivea_alv
+                0x000a5cc8                usercmd
+                0x000a5d50                bios_dirbuf
+                0x000a5dd0                bios_currentdmaaddress
+                0x000a5dd8                bios_drivea_csv
+                0x000a7dd8                bios_current_dph
+                0x000a7ddc                bios_currentsector
+ COMMON         0x000a7de0      0x314 ccp.o
+                                  0x0 (size before relaxing)
+                0x000a7de0                user_ptr
+                0x000a7de8                cmdfcb
+                0x000a7e10                subdma
+                0x000a7e90                dirflag
+                0x000a7e94                subprompt
+                0x000a7e98                subcom
+                0x000a7f20                save_sub
+                0x000a7fa4                glb_index
+                0x000a7fa8                autorom
+                0x000a7fac                load_try
+                0x000a7fb0                subfcb
+                0x000a7fd4                user
+                0x000a7fd8                tail
+                0x000a7fdc                first_sub
+                0x000a7fe0                cur_disk
+                0x000a7fe4                index
+                0x000a7fe8                sub_user
+                0x000a7fec                chain_sub
+                0x000a7ff0                end_of_file
+                0x000a7ff4                sub_index
+                0x000a7ff8                parm
+                0x000a8070                dma
+                0x000a80f4                . = ALIGN (0x4)
+                0x000a80f4                _end = .
+                0x000a80f4                __end = .
+OUTPUT(exchange a.out-vax-netbsd)

@@ -1,0 +1,16 @@
+GAS LISTING booger.s 			page 1
+
+
+   1              		.text
+   2 0000 00000000 		.space 512,0
+   2      00000000 
+   2      00000000 
+   2      00000000 
+   2      00000000 
+   3              		.end
+GAS LISTING booger.s 			page 2
+
+
+NO DEFINED SYMBOLS
+
+NO UNDEFINED SYMBOLS

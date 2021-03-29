@@ -1,0 +1,45 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .text set to 0x2000
+LOAD circforth.o
+                0x00000000                __DYNAMIC = 0x0
+                0x00000000                PROVIDE (__stack, 0x0)
+                0x00001020                . = 0x1020
+
+.text           0x00002000     0x2020
+ CREATE_OBJECT_SYMBOLS
+ *(.text)
+ .text          0x00002000     0x201c circforth.o
+ *(.dynrel)
+ *(.hash)
+ *(.dynsym)
+ *(.dynstr)
+ *(.rules)
+ *(.need)
+                0x0000401c                _etext = .
+                0x0000401c                __etext = .
+                0x0000401c                . = .
+
+.data           0x00004020        0x0
+ *(.dynamic)
+ *(.got)
+ *(.plt)
+ *(.data)
+ *(.linux-dynamic)
+                0x00004020                _edata = .
+                0x00004020                __edata = .
+
+.bss            0x00004020        0x0
+                0x00004020                __bss_start = .
+ *(.bss)
+ *(COMMON)
+                0x00004020                . = ALIGN (0x4)
+                0x00004020                _end = .
+                0x00004020                __end = .
+OUTPUT(circforth.aout a.out-vax-netbsd)

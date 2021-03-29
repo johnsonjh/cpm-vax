@@ -1,0 +1,14 @@
+all::	
+	make target.mop
+
+target.s: third.qdl header.vax trailer.vax ../qdl/qdlvax
+	../qdl/qdlvax <third.qdl >target.s
+
+target.o: target.s
+	vax-dec-netbsdaout-gcc -c target.s -Wa,-a >target.lst
+
+target: target.o
+	vax-dec-netbsdaout-ld -o target --section-start .text=0 -e start target.o
+
+target.mop: target
+	/usr/sbin/mopcopy target target.mop

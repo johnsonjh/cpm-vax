@@ -1,0 +1,17 @@
+GAS LISTING argh.s 			page 1
+
+
+   1              		.text
+   2 0000 820457   		subb2 $4,r7
+   3 0003 DEA90467 		moval 4(r9),(r7)
+   4 0007 D05A7E   		movl r10,-(sp)
+   5 000a DEAF035A 		moval 1f,r10
+   6 000e 176B     		jmp (r11)
+   7              	1:
+   8              		.end
+GAS LISTING argh.s 			page 2
+
+
+NO DEFINED SYMBOLS
+
+NO UNDEFINED SYMBOLS

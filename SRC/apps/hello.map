@@ -1,0 +1,45 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .text set to 0x200
+LOAD hello.o
+                0x00000000                __DYNAMIC = 0x0
+                0x00000000                PROVIDE (__stack, 0x0)
+                0x00001020                . = 0x1020
+
+.text           0x00000200       0x28
+ CREATE_OBJECT_SYMBOLS
+ *(.text)
+ .text          0x00000200       0x24 hello.o
+ *(.dynrel)
+ *(.hash)
+ *(.dynsym)
+ *(.dynstr)
+ *(.rules)
+ *(.need)
+                0x00000224                _etext = .
+                0x00000224                __etext = .
+                0x00000224                . = .
+
+.data           0x00000228        0x0
+ *(.dynamic)
+ *(.got)
+ *(.plt)
+ *(.data)
+ *(.linux-dynamic)
+                0x00000228                _edata = .
+                0x00000228                __edata = .
+
+.bss            0x00000228        0x0
+                0x00000228                __bss_start = .
+ *(.bss)
+ *(COMMON)
+                0x00000228                . = ALIGN (0x4)
+                0x00000228                _end = .
+                0x00000228                __end = .
+OUTPUT(hello.aout a.out-vax-netbsd)
