@@ -1,5 +1,7 @@
 # CP/M-VAX
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b2385ccfbc8c46bf9dfdb071eba97c46)](https://app.codacy.com/gh/johnsonjh/cpm-vax?utm_source=github.com&utm_medium=referral&utm_content=johnsonjh/cpm-vax&utm_campaign=Badge_Grade_Settings)
+
 This is a port of **CP/M-68K** to the *Micro*VAX 2000.
 
 ## What's included
